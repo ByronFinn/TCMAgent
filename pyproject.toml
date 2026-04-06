@@ -1,0 +1,117 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tcm-agent"
+version = "0.1.0"
+description = "Neo4j-driven convergent TCM consultation system built with deepagents and deep-agents-ui."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [
+  { name = "TCMAgent Team" }
+]
+keywords = [
+  "tcm",
+  "agent",
+  "deepagents",
+  "neo4j",
+  "langgraph",
+  "medical-ai"
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Framework :: FastAPI",
+  "Intended Audience :: Developers",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+  "deepagents>=0.5.0a4",
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "pydantic>=2.8.0",
+  "pydantic-settings>=2.4.0",
+  "neo4j>=5.23.0",
+  "python-dotenv>=1.0.1",
+  "httpx>=0.27.0",
+  "tenacity>=9.0.0",
+  "orjson>=3.10.0",
+  "langchain>=0.3.0",
+  "langgraph>=0.2.0"
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-asyncio>=0.24.0",
+  "pytest-cov>=5.0.0",
+  "ruff>=0.6.0",
+  "mypy>=1.11.0",
+  "types-python-dateutil>=2.9.0.20240316"
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/TCMAgent"
+Repository = "https://github.com/your-org/TCMAgent"
+Documentation = "https://github.com/your-org/TCMAgent/tree/main/docs"
+
+[project.scripts]
+tcm-agent-api = "tcm_agent.api.app:main"
+tcm-agent-dev = "tcm_agent.runtime.bootstrap:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tcm_agent"]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "UP",
+  "B",
+  "SIM",
+  "RUF"
+]
+ignore = [
+  "B008"
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
+strict = false
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+pretty = true
+mypy_path = "src"
+
+[tool.coverage.run]
+source = ["src/tcm_agent"]
+branch = true
+
+[tool.coverage.report]
+skip_empty = true
+show_missing = true
