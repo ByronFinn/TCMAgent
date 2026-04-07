@@ -35,6 +35,7 @@ class Settings(BaseSettings):
     # Model provider
     model_provider: Literal["openai", "anthropic", "openrouter", "custom"] = "openai"
     model_name: str = "gpt-4o-mini"
+    model_base_url: str | None = None
     model_temperature: float = Field(default=0.0, ge=0.0, le=2.0)
 
     # Provider credentials

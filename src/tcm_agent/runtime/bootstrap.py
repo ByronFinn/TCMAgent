@@ -103,7 +103,7 @@ def build_neo4j_client(settings: Settings) -> Neo4jClient | None:
 
     try:
         client.verify_connectivity()
-    except Neo4jClientError as exc:
+    except (Neo4jClientError, Exception) as exc:
         logger.warning("Neo4j connectivity check failed: %s", exc)
         client.close()
         return None
@@ -189,7 +189,6 @@ def shutdown_runtime(context: RuntimeContext) -> None:
 def main() -> None:
     """CLI entrypoint for local development startup."""
     settings = get_settings()
-    app = create_app(settings)
 
     logger.info(
         "Starting TCMAgent server on %s:%s",
@@ -197,13 +196,23 @@ def main() -> None:
         settings.api_port,
     )
 
-    uvicorn.run(
-        app,
-        host=settings.api_host,
-        port=settings.api_port,
-        reload=settings.is_development,
-        log_level=settings.log_level.lower(),
-    )
+    if settings.is_development:
+        uvicorn.run(
+            "tcm_agent.runtime.bootstrap:create_app",
+            host=settings.api_host,
+            port=settings.api_port,
+            reload=True,
+            log_level=settings.log_level.lower(),
+            factory=True,
+        )
+    else:
+        app = create_app(settings)
+        uvicorn.run(
+            app,
+            host=settings.api_host,
+            port=settings.api_port,
+            log_level=settings.log_level.lower(),
+        )
 
 
 if __name__ == "__main__":
