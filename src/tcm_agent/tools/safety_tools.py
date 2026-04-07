@@ -36,7 +36,6 @@ from tcm_agent.schemas.case import (
 from tcm_agent.tools.case_tools import (
     GetCaseStateInput,
     SaveRiskDecisionInput,
-    SaveRiskDecisionOutput,
     get_case_state,
     save_risk_decision,
 )
@@ -569,7 +568,7 @@ def issue_risk_decision(payload: IssueRiskDecisionInput) -> IssueRiskDecisionOut
         evidence_refs=sorted(set(evidence_refs)),
     )
 
-    persisted_result: SaveRiskDecisionOutput = save_risk_decision(
+    save_risk_decision(
         SaveRiskDecisionInput(
             case_id=payload.case_id,
             risk_decision=decision,

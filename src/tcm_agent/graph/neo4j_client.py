@@ -196,7 +196,7 @@ class Neo4jClient:
     @staticmethod
     def _record_to_dict(record: Record) -> dict[str, Any]:
         """Convert a Neo4j record into a plain dictionary."""
-        return {key: record[key] for key in record.keys()}
+        return {key: record[key] for key in record}
 
 
 def create_neo4j_client(config: Neo4jConfig | None = None) -> Neo4jClient:

@@ -796,13 +796,12 @@ def save_case_summary(payload: SaveCaseSummaryInput) -> SaveCaseSummaryOutput:
     if payload.clinician_summary is not None:
         state.clinician_summary = payload.clinician_summary
 
-    if payload.patient_summary or payload.clinician_summary:
-        if state.case_stage in {
-            CaseStage.INTAKE_CONVERGED,
-            CaseStage.SAFETY_REVIEWED,
-            CaseStage.HANDOFF_REQUIRED,
-        }:
-            state.case_stage = CaseStage.SUMMARY_GENERATED
+    if (payload.patient_summary or payload.clinician_summary) and state.case_stage in {
+        CaseStage.INTAKE_CONVERGED,
+        CaseStage.SAFETY_REVIEWED,
+        CaseStage.HANDOFF_REQUIRED,
+    }:
+        state.case_stage = CaseStage.SUMMARY_GENERATED
 
     _append_audit_event(
         state,

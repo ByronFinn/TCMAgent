@@ -351,7 +351,7 @@ def _detect_population_tags(
     # Pregnancy
     if is_pregnant is True:
         tags.append("pregnant")
-        reasons["pregnant"] = "患者处于孕期，需要提高风险敏感度并选择更保守的问诊策略"
+        reasons["pregnant"] = "患者处于孕期,需要提高风险敏感度并选择更保守的问诊策略"
 
     # Age-based groups
     if patient_age is not None:
@@ -365,10 +365,9 @@ def _detect_population_tags(
     # Chronic kidney disease (from existing conditions)
     kidney_keywords = ("肾病", "慢性肾", "肾功能不全", "肾衰", "kidney", "renal", "nephro")
     for cond in existing_conditions:
-        if any(kw in cond.lower() for kw in kidney_keywords):
-            if "chronic_kidney" not in tags:
-                tags.append("chronic_kidney")
-                reasons["chronic_kidney"] = f"患者既往病史中包含肾脏相关疾病：{cond}"
+        if any(kw in cond.lower() for kw in kidney_keywords) and "chronic_kidney" not in tags:
+            tags.append("chronic_kidney")
+            reasons["chronic_kidney"] = f"患者既往病史中包含肾脏相关疾病：{cond}"
 
     # Anticoagulant medications
     anticoag_keywords = (
@@ -387,10 +386,9 @@ def _detect_population_tags(
         "低分子肝素",
     )
     for med in current_medications:
-        if any(kw in med.lower() for kw in anticoag_keywords):
-            if "on_anticoagulants" not in tags:
-                tags.append("on_anticoagulants")
-                reasons["on_anticoagulants"] = f"患者正在服用抗凝药物：{med}"
+        if any(kw in med.lower() for kw in anticoag_keywords) and "on_anticoagulants" not in tags:
+            tags.append("on_anticoagulants")
+            reasons["on_anticoagulants"] = f"患者正在服用抗凝药物：{med}"
 
     return tags, reasons
 

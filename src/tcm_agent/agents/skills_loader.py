@@ -14,7 +14,7 @@ when a ``SubAgent`` spec carries a ``skills`` key::
 Critically, it uses the **same backend** that was passed to ``create_deep_agent``.
 This module's job is therefore to:
 
-1. Build the right **backend** – a ``CompositeBackend`` that routes the
+1. Build the right **backend** - a ``CompositeBackend`` that routes the
    ``/skills/`` prefix to a ``FilesystemBackend`` (pointing at the project's
    ``skills/`` directory) while leaving all other paths on the default
    ``StateBackend`` (safe, ephemeral, appropriate for a web API).

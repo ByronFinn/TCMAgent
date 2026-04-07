@@ -91,7 +91,9 @@ select = [
   "RUF"
 ]
 ignore = [
-  "B008"
+  "B008",
+  "RUF001",
+  "RUF002",
 ]
 
 [tool.ruff.format]

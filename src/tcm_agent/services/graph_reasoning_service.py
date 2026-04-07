@@ -509,8 +509,8 @@ class GraphReasoningService:
 
         if selected:
             reason = (
-                "Selected question(s) based on current candidate overlap, missing high-value facts, "
-                "and safety priority."
+                "Selected question(s) based on current candidate overlap, "
+                "missing high-value facts, and safety priority."
             )
         else:
             reason = "No additional high-value questions were identified for the current state."

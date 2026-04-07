@@ -1,20 +1,20 @@
 from __future__ import annotations
 
 from datetime import datetime
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
-class VisitType(str, Enum):
+class VisitType(StrEnum):
     INITIAL = "initial"
     FOLLOW_UP = "follow_up"
     UNKNOWN = "unknown"
 
 
-class Channel(str, Enum):
+class Channel(StrEnum):
     WEB = "web"
     APP = "app"
     MINI_PROGRAM = "mini_program"
@@ -23,7 +23,7 @@ class Channel(str, Enum):
     UNKNOWN = "unknown"
 
 
-class CaseStage(str, Enum):
+class CaseStage(StrEnum):
     CREATED = "created"
     TRIAGED = "triaged"
     INITIAL_CANDIDATES_GENERATED = "initial_candidates_generated"
@@ -36,7 +36,7 @@ class CaseStage(str, Enum):
     CLOSED = "closed"
 
 
-class FactType(str, Enum):
+class FactType(StrEnum):
     SYMPTOM = "symptom"
     SIGN = "sign"
     OBSERVATION = "observation"
@@ -49,13 +49,13 @@ class FactType(str, Enum):
     OTHER = "other"
 
 
-class CandidateType(str, Enum):
+class CandidateType(StrEnum):
     DISEASE = "disease"
     PATTERN = "pattern"
     PATHOGENESIS = "pathogenesis"
 
 
-class RiskLevel(str, Enum):
+class RiskLevel(StrEnum):
     NONE = "none"
     LOW = "low"
     MEDIUM = "medium"
@@ -64,14 +64,14 @@ class RiskLevel(str, Enum):
     UNKNOWN = "unknown"
 
 
-class Severity(str, Enum):
+class Severity(StrEnum):
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"
     CRITICAL = "critical"
 
 
-class EvidenceType(str, Enum):
+class EvidenceType(StrEnum):
     SUPPORT = "support"
     CONFLICT = "conflict"
     EXCLUDE = "exclude"
@@ -79,7 +79,7 @@ class EvidenceType(str, Enum):
     INFO = "info"
 
 
-class QuestionType(str, Enum):
+class QuestionType(StrEnum):
     BOOLEAN = "boolean"
     SINGLE_CHOICE = "single_choice"
     MULTI_CHOICE = "multi_choice"
@@ -87,7 +87,7 @@ class QuestionType(str, Enum):
     FREE_TEXT = "free_text"
 
 
-class SummaryAudience(str, Enum):
+class SummaryAudience(StrEnum):
     PATIENT = "patient"
     CLINICIAN = "clinician"
 

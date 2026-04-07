@@ -477,7 +477,8 @@ def build_evidence_path(
                 path_edges=edges,
                 summary=(
                     f"{assessment.name} is supported by {len(assessment.supporting_evidence)} "
-                    f"positive fact(s) and opposed by {len(assessment.conflicting_evidence)} fact(s)."
+                    "positive fact(s) and opposed by "
+                    f"{len(assessment.conflicting_evidence)} fact(s)."
                 ),
             )
         )

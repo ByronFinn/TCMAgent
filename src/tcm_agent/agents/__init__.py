@@ -33,26 +33,24 @@ from .skills_loader import (
 )
 
 __all__ = [
-    # ── factory ────────────────────────────────────────────────────────
     "DEFAULT_INTAKE_PROMPT",
     "DEFAULT_SAFETY_PROMPT",
     "DEFAULT_SUPERVISOR_NAME",
     "DEFAULT_SUPERVISOR_PROMPT",
     "DEFAULT_TRIAGE_PROMPT",
-    "AgentFactory",
-    "AgentFactoryConfig",
-    "SubagentTools",
-    "build_default_subagents",
-    "create_default_agent_factory",
-    "create_supervisor_agent",
-    # ── skills loader ──────────────────────────────────────────────────
     "INTAKE_SOURCE",
     "SAFETY_SOURCE",
     "SHARED_SOURCE",
     "SKILLS_PREFIX",
     "SKILLS_ROOT",
     "TRIAGE_SOURCE",
+    "AgentFactory",
+    "AgentFactoryConfig",
+    "SubagentTools",
     "build_composite_backend",
+    "build_default_subagents",
+    "create_default_agent_factory",
+    "create_supervisor_agent",
     "describe_skills_layout",
     "intake_skill_sources",
     "safety_skill_sources",

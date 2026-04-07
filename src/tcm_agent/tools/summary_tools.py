@@ -208,7 +208,9 @@ _STAGE_CLINICIAN_ACTION: dict[CaseStage, str] = {
     CaseStage.CREATED: "病例刚创建，建议先完成导诊评估（run_triage）",
     CaseStage.TRIAGED: "已完成导诊，建议启动候选生成和深度问诊流程",
     CaseStage.INTAKE_IN_PROGRESS: "问诊进行中，建议继续追问以提高信息完整度和收敛分数",
-    CaseStage.INTAKE_PAUSED_FOR_RISK: "问诊因风险暂停，建议尽快完成安全复核（run_full_safety_check）",
+    CaseStage.INTAKE_PAUSED_FOR_RISK: (
+        "问诊因风险暂停，建议尽快完成安全复核（run_full_safety_check）"
+    ),
     CaseStage.INTAKE_CONVERGED: "信息已收敛，建议执行最终安全评估并生成摘要",
     CaseStage.SAFETY_REVIEWED: "安全评估完毕，可生成医患双端摘要",
 }
